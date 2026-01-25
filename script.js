@@ -6,21 +6,26 @@ document.addEventListener('mousemove', (e) => {
         overlay.style.setProperty('--y', `${e.clientY}px`);
     }
 
-    // 2. Eye Tracking Logic for Characters
+    // 2. Eye Tracking Logic for characters
     const pupils = document.querySelectorAll('.pupil');
     pupils.forEach(pupil => {
         const rect = pupil.getBoundingClientRect();
         const eyeX = rect.left + rect.width / 2;
         const eyeY = rect.top + rect.height / 2;
+
         const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
         const distance = 5;
-        pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+
+        const moveX = Math.cos(angle) * distance;
+        const moveY = Math.sin(angle) * distance;
+
+        pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 });
 
-// Feature: Dynamic Typing Animation
+// Typing Animation
 const textElement = document.querySelector(".typewriter");
-const phrases = ["Digital Frontiers.", "High-End UX.", "Fluid Interfaces."];
+const phrases = ["Digital Frontiers.", "High-End UX.", "Fluid Interfaces.", "Brand Excellence."];
 let pIdx = 0, cIdx = 0, isDel = false;
 
 function type() {
