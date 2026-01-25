@@ -1,12 +1,14 @@
+/* EXORAZ MASTER SCRIPT */
+
 document.addEventListener('mousemove', (e) => {
-    // 1. Move the Spotlight Mask
+    // 1. Update Spotlight Position
     const overlay = document.querySelector('.spotlight-overlay');
-    if(overlay) {
+    if (overlay) {
         overlay.style.setProperty('--x', `${e.clientX}px`);
         overlay.style.setProperty('--y', `${e.clientY}px`);
     }
 
-    // 2. Eye Tracking Logic for characters
+    // 2. Character Eye Tracking Logic
     const pupils = document.querySelectorAll('.pupil');
     pupils.forEach(pupil => {
         const rect = pupil.getBoundingClientRect();
@@ -14,7 +16,7 @@ document.addEventListener('mousemove', (e) => {
         const eyeY = rect.top + rect.height / 2;
 
         const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-        const distance = 5;
+        const distance = 5; // Pixel travel distance for pupils
 
         const moveX = Math.cos(angle) * distance;
         const moveY = Math.sin(angle) * distance;
@@ -23,22 +25,44 @@ document.addEventListener('mousemove', (e) => {
     });
 });
 
-// Typing Animation
+/* Feature: Professional Typing Animation */
 const textElement = document.querySelector(".typewriter");
-const phrases = ["Digital Frontiers.", "High-End UX.", "Fluid Interfaces.", "Brand Excellence."];
-let pIdx = 0, cIdx = 0, isDel = false;
+const phrases = [
+    "Digital Frontiers.", 
+    "High-End UX Architecture.", 
+    "Fluid Interfaces.", 
+    "Startup Excellence."
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
 function type() {
-    const curr = phrases[pIdx];
-    textElement.textContent = isDel ? curr.substring(0, cIdx - 1) : curr.substring(0, cIdx + 1);
-    cIdx = isDel ? cIdx - 1 : cIdx + 1;
+    const currentPhrase = phrases[phraseIndex];
+    
+    if (isDeleting) {
+        textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+    }
 
-    let speed = isDel ? 50 : 150;
-    if (!isDel && cIdx === curr.length) { isDel = true; speed = 2500; }
-    else if (isDel && cIdx === 0) { isDel = false; pIdx = (pIdx + 1) % phrases.length; speed = 500; }
-    setTimeout(type, speed);
+    let typeSpeed = isDeleting ? 60 : 120;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        typeSpeed = 2500; // Pause at end of text
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typeSpeed = 500;
+    }
+
+    setTimeout(type, typeSpeed);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if(textElement) type();
+    if (textElement) type();
 });

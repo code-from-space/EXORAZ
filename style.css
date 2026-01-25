@@ -693,3 +693,111 @@ html, body {
     color: var(--text-slate);
     line-height: 1.5;
 }
+
+
+
+/* --- SECTION SPECIFIC BACKGROUND IMAGES --- */
+
+/* Home already uses cursor-img.jpg */
+.img-home { 
+    background: url('images/cursor-img.jpg') no-repeat center center; 
+    background-size: cover; 
+}
+
+/* 2. About Us Background */
+.img-about { 
+    background: url('images/about-bg.jpg') no-repeat center center; 
+    background-size: cover; 
+}
+
+/* 3. Advantage Background */
+.img-advantage { 
+    background: url('images/advantage-bg.jpg') no-repeat center center; 
+    background-size: cover; 
+}
+
+/* 4. Methodology Background */
+.img-method { 
+    background: url('images/methodology-bg.jpg') no-repeat center center; 
+    background-size: cover; 
+}
+
+/* 5. Projects Background */
+.img-projects { 
+    background: url('images/projects-bg.jpg') no-repeat center center; 
+    background-size: cover; 
+}
+
+/* 6. Contact Background */
+.img-contact { 
+    background: url('images/contact-bg.jpg') no-repeat center center; 
+    background-size: cover; 
+}
+
+/* --- Support for Section-Specific Reveals --- */
+.bg-reveal {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1; /* Lowest layer */
+}
+
+/* Assigning your individual images */
+.img-home { background: url('images/cursor-img.jpg') no-repeat center center/cover; }
+.img-about { background: url('images/about-bg.jpg') no-repeat center center/cover; }
+.img-advantage { background: url('images/advantage-bg.jpg') no-repeat center center/cover; }
+.img-method { background: url('images/method-bg.jpg') no-repeat center center/cover; }
+.img-projects { background: url('images/projects-bg.jpg') no-repeat center center/cover; }
+.img-contact { background: url('images/contact-bg.jpg') no-repeat center center/cover; }
+
+/* Ensuring the spotlight sits correctly */
+.spotlight-overlay {
+    position: fixed;
+    z-index: 5; /* Above background, below tiles */
+    pointer-events: none;
+    /* ... keep your existing radial-gradient code ... */
+}
+
+
+/* --- NESTED TILE ARCHITECTURE --- */
+
+.main-tile-container {
+    max-width: 1000px !important;
+    padding: 60px 40px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-nested-tile {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 30px 25px !important;
+    transition: all 0.3s ease;
+}
+
+.inner-nested-tile:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: translateY(-10px);
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.project-card {
+    text-align: left;
+}
+
+.btn-text {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-text:hover {
+    letter-spacing: 1px;
+    color: #fff;
+}
