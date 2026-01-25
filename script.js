@@ -1,68 +1,75 @@
-/* EXORAZ MASTER SCRIPT */
+/* EXORAZ FAST MORPH-FLIP ENGINE */
 
+const morphTile = document.getElementById('global-morph-tile');
+const scroller = document.getElementById('main-scroller');
+const sections = document.querySelectorAll('.snap-section');
+
+function updateMorphTile() {
+    let currentFound = false;
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        
+        // Detection for active section
+        if (!currentFound && rect.top >= -window.innerHeight / 2 && rect.top <= window.innerHeight / 2) {
+            currentFound = true;
+            section.classList.add('active');
+            
+            const placeholder = section.querySelector('.tile-placeholder');
+            const pRect = placeholder.getBoundingClientRect();
+
+            // Trigger Faster Flip
+            morphTile.classList.add('flipping');
+            
+            // Apply New Size/Position immediately
+            morphTile.style.width = `${pRect.width}px`;
+            morphTile.style.height = `${pRect.height}px`;
+            morphTile.style.top = `${pRect.top}px`;
+            morphTile.style.left = `${pRect.left}px`;
+
+            // Remove flipping state much faster (200ms)
+            setTimeout(() => {
+                morphTile.classList.remove('flipping');
+            }, 200); 
+        } else {
+            section.classList.remove('active');
+        }
+    });
+}
+
+// Mouse tracking
 document.addEventListener('mousemove', (e) => {
-    // 1. Update Spotlight Position
     const overlay = document.querySelector('.spotlight-overlay');
     if (overlay) {
         overlay.style.setProperty('--x', `${e.clientX}px`);
         overlay.style.setProperty('--y', `${e.clientY}px`);
     }
 
-    // 2. Character Eye Tracking Logic
     const pupils = document.querySelectorAll('.pupil');
     pupils.forEach(pupil => {
         const rect = pupil.getBoundingClientRect();
-        const eyeX = rect.left + rect.width / 2;
-        const eyeY = rect.top + rect.height / 2;
-
-        const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-        const distance = 5; // Pixel travel distance for pupils
-
-        const moveX = Math.cos(angle) * distance;
-        const moveY = Math.sin(angle) * distance;
-
-        pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        const angle = Math.atan2(e.clientY - (rect.top + rect.height/2), e.clientX - (rect.left + rect.width/2));
+        pupil.style.transform = `translate(${Math.cos(angle) * 5}px, ${Math.sin(angle) * 5}px)`;
     });
 });
 
-/* Feature: Professional Typing Animation */
-const textElement = document.querySelector(".typewriter");
-const phrases = [
-    "Digital Frontiers.", 
-    "High-End UX Architecture.", 
-    "Fluid Interfaces.", 
-    "Startup Excellence."
-];
-
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+// Typing logic
+const phrases = ["Digital Frontiers.", "High-End UX Architecture.", "Fluid Interfaces."];
+let pIdx = 0, cIdx = 0, isDel = false;
 
 function type() {
-    const currentPhrase = phrases[phraseIndex];
-    
-    if (isDeleting) {
-        textElement.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        textElement.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 60 : 120;
-
-    if (!isDeleting && charIndex === currentPhrase.length) {
-        isDeleting = true;
-        typeSpeed = 2500; // Pause at end of text
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typeSpeed = 500;
-    }
-
-    setTimeout(type, typeSpeed);
+    const textElement = document.querySelector(".typewriter");
+    if(!textElement) return;
+    const curr = phrases[pIdx];
+    textElement.textContent = isDel ? curr.substring(0, cIdx - 1) : curr.substring(0, cIdx + 1);
+    cIdx = isDel ? cIdx - 1 : cIdx + 1;
+    let speed = isDel ? 40 : 80; // Sped up typing speed as well
+    if (!isDel && cIdx === curr.length) { isDel = true; speed = 1500; }
+    else if (isDel && cIdx === 0) { isDel = false; pIdx = (pIdx + 1) % phrases.length; speed = 300; }
+    setTimeout(type, speed);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    if (textElement) type();
+scroller.addEventListener('scroll', updateMorphTile);
+window.addEventListener('load', () => {
+    updateMorphTile();
+    type();
 });

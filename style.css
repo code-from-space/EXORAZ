@@ -801,3 +801,145 @@ html, body {
     letter-spacing: 1px;
     color: #fff;
 }
+
+
+
+
+/* --- MORPHING FLIP ANIMATION --- */
+
+#global-morph-tile {
+    position: fixed;
+    z-index: 8; /* Above spotlight, below nav */
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Flipping Spring Effect */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+}
+
+/* State when flipping */
+.flipping {
+    transform: rotateX(180deg) scale(0.9);
+    filter: brightness(1.5);
+}
+
+.tile-placeholder {
+    opacity: 0; /* Ghost tile is invisible */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Placeholders define the sizes for the JS to read */
+.hero-dimensions { width: 900px; height: 500px; }
+.about-dimensions { width: 700px; height: 350px; }
+.advantage-dimensions { width: 1000px; height: 600px; }
+.methodology-dimensions { width: 900px; height: 550px; }
+.projects-dimensions { width: 1000px; height: 500px; }
+.contact-dimensions { width: 800px; height: 400px; }
+
+/* The actual content fades in when the morph tile arrives */
+.tile-content {
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s;
+    pointer-events: auto;
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    padding: 40px;
+}
+
+.snap-section.active .tile-content {
+    opacity: 1;
+}
+
+
+
+
+
+/* --- CRITICAL TEXT VISIBILITY FIX --- */
+
+/* 1. Ensure the ghost placeholder allows content to be seen */
+.tile-placeholder {
+    opacity: 1 !important; /* Make the container visible */
+    pointer-events: none;  /* Let clicks pass through to buttons */
+}
+
+/* 2. Force text and buttons to the very front */
+.tile-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 20 !important; /* Higher than the morph tile (8) and spotlight (5) */
+    pointer-events: auto;   /* Re-enable clicking for buttons */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 3. Show content only when the section is active */
+.snap-section.active .tile-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 4. Ensure Hero text specifically is left-aligned as per your design */
+#home .tile-content {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 10%;
+}
+
+/* 5. Fix for the Morph Tile z-index */
+#global-morph-tile {
+    z-index: 8; /* Sits behind the text (20) but above the background (1) */
+    pointer-events: none; 
+}
+
+
+/* --- FASTER MORPHING FLIP ANIMATION --- */
+
+#global-morph-tile {
+    position: fixed;
+    z-index: 8;
+    pointer-events: none;
+    /* Faster duration (0.4s) and snappier easing */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+}
+
+/* State when flipping - reduced scale for faster feel */
+.flipping {
+    transform: rotateX(90deg) scale(0.95);
+    filter: brightness(1.2);
+}
+
+/* Speed up the content fade-in to match */
+.tile-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0.2s, visibility 0.3s ease 0.2s;
+    z-index: 20 !important;
+    pointer-events: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

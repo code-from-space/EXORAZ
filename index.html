@@ -10,6 +10,8 @@
 
     <div class="spotlight-overlay"></div>
 
+    <div id="global-morph-tile"></div>
+
     <header>
         <nav>
             <div class="logo-container">
@@ -27,57 +29,49 @@
         </nav>
     </header>
 
-    <div class="scroll-container">
+    <div class="scroll-container" id="main-scroller">
         
-        <section id="home" class="snap-section">
+        <section id="home" class="snap-section active">
             <div class="bg-reveal img-home"></div>
-            <div class="hero-glass-card hover-tile">
-                <p class="tagline">INNOVATION. SIMPLIFIED.</p>
-                <h1>Architecting <span class="highlight typewriter"></span></h1>
-                <p class="description">We transform complex ideas into high-performance reality. Premium digital solutions for visionary startups.</p>
-                
-                <div class="hero-btns">
-                    <a href="#projects" class="btn btn-blue">Explore Work</a>
-                    <a href="#contact" class="btn btn-outline">Start a Project</a>
-                </div>
-
-                <div class="character-area">
-                    <div class="character" style="--color: #ff5733;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
-                    <div class="character" style="--color: #33ff57;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
-                    <div class="character" style="--color: #3357ff;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
-                    <div class="character" style="--color: #f333ff;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
-                    <div class="character" style="--color: #ffd433;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+            <div class="tile-placeholder hero-dimensions">
+                <div class="tile-content">
+                    <p class="tagline">INNOVATION. SIMPLIFIED.</p>
+                    <h1>Architecting <span class="highlight typewriter"></span></h1>
+                    <p class="description">We transform complex ideas into high-performance reality. Premium digital solutions for visionary startups.</p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-blue">Explore Work</a>
+                        <a href="#contact" class="btn btn-outline">Start a Project</a>
+                    </div>
+                    <div class="character-area">
+                        <div class="character" style="--color: #ff5733;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+                        <div class="character" style="--color: #33ff57;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+                        <div class="character" style="--color: #3357ff;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+                        <div class="character" style="--color: #f333ff;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+                        <div class="character" style="--color: #ffd433;"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="about" class="snap-section">
             <div class="bg-reveal img-about"></div>
-            <div class="container glass-card hover-tile">
-                <h2 class="section-title">About <span class="highlight">Us</span></h2>
-                <p class="content-text">Exoraz is a collective of visionary developers dedicated to crafting premium digital experiences. We bridge the gap between complex technology and elegant user interfaces.</p>
+            <div class="tile-placeholder about-dimensions">
+                <div class="tile-content">
+                    <h2 class="section-title">About <span class="highlight">Us</span></h2>
+                    <p class="content-text" style="color: white;">Exoraz is a collective of visionary developers dedicated to crafting premium digital experiences.</p>
+                </div>
             </div>
         </section>
 
         <section id="advantage" class="snap-section">
             <div class="bg-reveal img-advantage"></div>
-            <div class="container hero-glass-card hover-tile main-tile-container">
-                <h2 class="section-title">The <span class="highlight">Advantage</span></h2>
-                <div class="grid-3">
-                    <div class="glass-card inner-nested-tile">
-                        <div class="icon-accent">01</div>
-                        <h3>Precision</h3>
-                        <p>Clean code architecture built for technical longevity.</p>
-                    </div>
-                    <div class="glass-card inner-nested-tile">
-                        <div class="icon-accent">02</div>
-                        <h3>Strategic UX</h3>
-                        <p>Interfaces designed to convert visitors into loyal customers.</p>
-                    </div>
-                    <div class="glass-card inner-nested-tile">
-                        <div class="icon-accent">03</div>
-                        <h3>Scalability</h3>
-                        <p>Architecture that grows alongside your startup's success.</p>
+            <div class="tile-placeholder advantage-dimensions">
+                <div class="tile-content">
+                    <h2 class="section-title">The <span class="highlight">Advantage</span></h2>
+                    <div class="grid-3">
+                        <div class="glass-card inner-nested-tile"><h3>Precision</h3></div>
+                        <div class="glass-card inner-nested-tile"><h3>UX</h3></div>
+                        <div class="glass-card inner-nested-tile"><h3>Scale</h3></div>
                     </div>
                 </div>
             </div>
@@ -85,31 +79,27 @@
 
         <section id="methodology" class="snap-section">
             <div class="bg-reveal img-method"></div>
-            <div class="container hero-glass-card hover-tile">
-                <h2 class="section-title">Our <span class="highlight">Methodology</span></h2>
-                <div class="method-list">
-                    <div class="method-item"><span>01</span> Discovery & Strategy</div>
-                    <div class="method-item"><span>02</span> High-End UX Architecture</div>
-                    <div class="method-item"><span>03</span> Precision Development</div>
-                    <div class="method-item"><span>04</span> Deployment & Launch</div>
+            <div class="tile-placeholder methodology-dimensions">
+                <div class="tile-content">
+                    <h2 class="section-title">Our <span class="highlight">Methodology</span></h2>
+                    <div class="method-list">
+                        <div class="method-item"><span>01</span> Discovery</div>
+                        <div class="method-item"><span>02</span> UX Architecture</div>
+                        <div class="method-item"><span>03</span> Development</div>
+                        <div class="method-item"><span>04</span> Launch</div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="snap-section">
             <div class="bg-reveal img-projects"></div>
-            <div class="container hero-glass-card hover-tile main-tile-container">
-                <h2 class="section-title">Latest <span class="highlight">Projects</span></h2>
-                <div class="grid-2">
-                    <div class="glass-card inner-nested-tile project-card">
-                        <h3>E-Commerce Engine</h3>
-                        <p>Custom HTML/JS retail solutions for modern digital brands.</p>
-                        <a href="#" class="btn-text">View Case Study →</a>
-                    </div>
-                    <div class="glass-card inner-nested-tile project-card">
-                        <h3>Tech Portfolio</h3>
-                        <p>Minimalist branding and high-performance sites for tech ventures.</p>
-                        <a href="#" class="btn-text">View Case Study →</a>
+            <div class="tile-placeholder projects-dimensions">
+                <div class="tile-content">
+                    <h2 class="section-title">Latest <span class="highlight">Projects</span></h2>
+                    <div class="grid-2">
+                        <div class="glass-card inner-nested-tile"><h3>E-Commerce</h3></div>
+                        <div class="glass-card inner-nested-tile"><h3>Portfolios</h3></div>
                     </div>
                 </div>
             </div>
@@ -117,10 +107,11 @@
 
         <section id="contact" class="snap-section">
             <div class="bg-reveal img-contact"></div>
-            <div class="container glass-card hover-tile">
-                <h2 class="section-title">Collaborate <span class="highlight">With Us</span></h2>
-                <p class="description">Ready to build your digital frontier? Our team is ready to help.</p>
-                <a href="mailto:hello@exoraz.com" class="btn btn-blue">Start a Conversation</a>
+            <div class="tile-placeholder contact-dimensions">
+                <div class="tile-content">
+                    <h2 class="section-title">Collaborate <span class="highlight">With Us</span></h2>
+                    <a href="mailto:hello@exoraz.com" class="btn btn-blue">Start a Conversation</a>
+                </div>
             </div>
         </section>
     </div>
