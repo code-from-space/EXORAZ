@@ -1,0 +1,567 @@
+/* EXORAZ PREMIUM STYLESHEET
+   Theme: Eternal Blue, #000518, Deep Purple
+*/
+
+:root {
+    --bg-main: #000518;
+    --eternal-blue: #007aff;
+    --deep-purple: #4b0082;
+    --accent-cyan: #00d4ff;
+    --text-slate: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* We hide the standard cursor to let the spotlight be the focus */
+    cursor: crosshair; 
+}
+
+/* --- Feature 4: Spotlight Reveal Logic --- */
+
+.spotlight-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Sits behind the Glass Card but above the background image */
+    pointer-events: none;
+}
+
+.reveal-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* This reveals your Windows vs Linux graphic */
+    background: url('images/cursor-img.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -2; /* Furthest layer back */
+}
+
+.spotlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* This creates the 'Flashlight' hole. Adjust the '150px' to make the circle bigger/smaller */
+    background: radial-gradient(
+        circle 180px at var(--x, 50%) var(--y, 50%), 
+        transparent 0%, 
+        rgba(0, 5, 24, 0.98) 100%
+    );
+}
+
+/* --- Navigation --- */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 50px;
+    background: rgba(0, 5, 24, 0.4);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo {
+    height: 42px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-slate);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--accent-cyan);
+}
+
+/* --- Hero Section & Glass Card --- */
+
+#home {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.hero-glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px); /* Strong glass effect */
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 900px;
+    padding: 50px;
+    border-radius: 40px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.tagline {
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--text-slate);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-glass-card h1 {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.highlight {
+    color: var(--accent-cyan);
+}
+
+.description {
+    color: var(--text-slate);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+/* --- Character Interaction Area --- */
+
+.character-area {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.character {
+    width: 65px;
+    height: 85px;
+    background-color: var(--color);
+    border-radius: 35px 35px 12px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.eye {
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pupil {
+    width: 9px;
+    height: 9px;
+    background: #000000;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
+
+/* --- UI Components --- */
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-blue {
+    background: var(--accent-cyan);
+    color: #000518;
+}
+
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+}
+
+/* Feature 7: Typing Cursor */
+.typewriter {
+    border-right: 3px solid var(--accent-cyan);
+    padding-right: 5px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* --- Sections --- */
+
+.section {
+    padding: 100px 20px;
+    min-height: 100vh;
+    background: var(--bg-main);
+}
+
+
+/* --- ADD-ONS START HERE --- */
+
+/* Enable Instant Snapping */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Critical for the scroll-container to take over */
+}
+
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Feature: Instant Snap Scroll */
+    scroll-behavior: smooth;
+}
+
+.snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+}
+
+/* Layout Helpers for New Sections */
+.container { max-width: 1100px; margin: 0 auto; width: 100%; }
+.section-title { font-size: 3rem; margin-bottom: 30px; text-align: center; }
+.content-text { font-size: 1.2rem; line-height: 1.8; color: var(--text-slate); max-width: 800px; margin: 0 auto; text-align: center; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+/* Methodology Styling */
+.method-list { display: flex; flex-direction: column; gap: 15px; text-align: left; max-width: 600px; margin: 0 auto; }
+.method-item { font-size: 1.5rem; color: #fff; padding: 15px; border-left: 3px solid var(--accent-cyan); background: rgba(255,255,255,0.03); }
+.method-item span { color: var(--accent-cyan); margin-right: 20px; font-weight: 800; }
+
+.glass-card { 
+    background: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    border-radius: 30px; 
+    padding: 40px; 
+}
+/* --- ADD-ONS END HERE --- */
+
+/* --- ADD-ONS FOR METHODOLOGY TILE & SNAP SCROLLING --- */
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+}
+
+/* Reusing your hero glass card style for the Methodology Tile */
+#methodology .hero-glass-card {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.method-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.method-item {
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 12px 20px;
+    border-left: 4px solid var(--accent-cyan);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 10px 10px 0;
+    transition: 0.3s ease;
+}
+
+.method-item:hover {
+    background: rgba(0, 212, 255, 0.05);
+    transform: translateX(10px);
+}
+
+.method-item span {
+    color: var(--accent-cyan);
+    margin-right: 15px;
+    font-weight: 800;
+}
+
+/* Grid helpers for other sections */
+.container { max-width: 1100px; margin: 0 auto; width: 100%; }
+.section-title { font-size: 3rem; margin-bottom: 25px; text-align: center; }
+.content-text { font-size: 1.2rem; color: var(--text-slate); text-align: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+
+
+/* --- METHODOLOGY TILE & SNAP SCROLL ADD-ONS --- */
+
+/* Scroll Snapping Logic */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+}
+
+/* Methodology Tile Design */
+.methodology-tile {
+    max-width: 900px !important;
+    margin: 0 auto;
+}
+
+.method-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Hover & Shine Effect */
+.method-item {
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 20px;
+    border-left: 4px solid var(--accent-cyan);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 15px 15px 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.method-item::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.method-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateX(15px);
+    border-left: 4px solid #fff;
+}
+
+.method-item:hover::after {
+    left: 100%; /* Triggers the 'Shine' on hover */
+}
+
+.method-item span {
+    color: var(--accent-cyan);
+    margin-right: 25px;
+    font-weight: 800;
+}
+
+/* New Section Layouts */
+.container { max-width: 1100px; margin: 0 auto; width: 100%; }
+.glass-card { 
+    background: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    border-radius: 30px; 
+    padding: 40px; 
+}
+.section-title { font-size: 3rem; margin-bottom: 30px; text-align: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+
+/* --- UNIVERSAL HOVER TILES & SNAP SCROLLING --- */
+
+/* Scroll Snapping Container */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+}
+
+/* The Hover Effect for All Tiles */
+.hover-tile {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-tile:hover {
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+}
+
+/* Layout Helpers */
+.container { max-width: 1100px; margin: 0 auto; width: 100%; }
+.glass-card { 
+    background: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    border-radius: 30px; 
+    padding: 40px; 
+}
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+/* Methodology Specific Hover */
+.method-item {
+    font-size: 1.5rem;
+    padding: 15px;
+    border-left: 4px solid var(--accent-cyan);
+    background: rgba(255, 255, 255, 0.02);
+    transition: 0.3s;
+    margin-bottom: 10px;
+    border-radius: 0 10px 10px 0;
+}
+
+.method-item:hover {
+    background: rgba(0, 212, 255, 0.05);
+    padding-left: 30px;
+}
+
+
+/* Update Tagline to Bold Deep Purple */
+#home .tagline {
+    color: #4b0082 !important; /* Deep Purple */
+    font-weight: 900 !important; /* Makes the text extra bold */
+    letter-spacing: 6px; /* Maintains the professional spaced-out look */
+    opacity: 1;
+}
+
+/* Update Description to Solid White */
+#home .description {
+    color: #ffffff !important; /* Pure White */
+    opacity: 1;
+}
+
+/* Update About Us description to solid white */
+#about .content-text {
+    color: #ffffff !important;
+    opacity: 1; /* Ensures full visibility against the dark background */
+    font-weight: 400; /* Keeps the professional body text weight */
+}
+
+
+
+
+
+
