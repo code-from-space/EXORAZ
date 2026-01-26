@@ -90,8 +90,50 @@ function type() {
     setTimeout(type, speed);
 }
 
+// Function to initialize advantage cards with parallax and rotating vectors
+function initializeAdvantageCards() {
+    const advantageCards = document.querySelectorAll('.advantage-card');
+
+    advantageCards.forEach(card => {
+        const vectorBg = card.querySelector('.card-vector-bg');
+
+        // Apply random animation delay and duration for vector background
+        if (vectorBg) {
+            vectorBg.style.animationDelay = `${Math.random() * 5}s`; // 0-5s delay
+            vectorBg.style.animationDuration = `${10 + Math.random() * 10}s`; // 10-20s duration
+            
+            // Randomize starting position and size slightly for variety
+            const randomSize = 60 + Math.random() * 40; // 60-100px
+            vectorBg.style.width = `${randomSize}px`;
+            vectorBg.style.height = `${randomSize}px`;
+            vectorBg.style.top = `${20 + Math.random() * 60}%`; // 20-80%
+            vectorBg.style.left = `${20 + Math.random() * 60}%`; // 20-80%
+        }
+
+        card.addEventListener('mousemove', (e) => {
+            const cardRect = card.getBoundingClientRect();
+            const centerX = cardRect.left + cardRect.width / 2;
+            const centerY = cardRect.top + cardRect.height / 2;
+
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+
+            const rotateY = (mouseX / cardRect.width) * 20; // Max 20deg rotation
+            const rotateX = (mouseY / cardRect.height) * -20; // Max -20deg rotation
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+        });
+    });
+}
+
+
 scroller.addEventListener('scroll', updateMorphTile);
 window.addEventListener('load', () => {
     updateMorphTile();
     type();
+    initializeAdvantageCards(); // Initialize new advantage card effects
 });
