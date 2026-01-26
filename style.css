@@ -626,6 +626,8 @@ html, body {
 .img-advantage { background: url('images/advantage-bg.jpg') no-repeat center center; background-size: cover; }
 .img-projects { background: url('images/projects-bg.jpg') no-repeat center center; background-size: cover; }
 .img-contact { background: url('images/contact-bg.jpg') no-repeat center center; background-size: cover; }
+.img-method { background: url('images/method-bg.jpg') no-repeat center center; background-size: cover; }
+
 
 /* Methodology Specific Styles */
 .method-list { display: flex; flex-direction: column; gap: 15px; text-align: left; }
@@ -882,7 +884,7 @@ html, body {
 
 /* 4. Methodology Background */
 .img-method { 
-    background: url('images/methodology-bg.jpg') no-repeat center center; 
+    background: url('images/method-bg.jpg') no-repeat center center; 
     background-size: cover; 
 }
 
@@ -910,7 +912,7 @@ html, body {
 .img-home { background: url('images/cursor-img.jpg') no-repeat center center/cover; }
 .img-about { background: url('images/about-bg.jpg') no-repeat center center/cover; }
 .img-advantage { background: url('images/advantage-bg.jpg') no-repeat center center/cover; }
-.img-method { background: url('images/methodology-bg.jpg') no-repeat center center/cover; }
+.img-method { background: url('images/method-bg.jpg') no-repeat center center/cover; }
 .img-projects { background: url('images/projects-bg.jpg') no-repeat center center/cover; }
 .img-contact { background: url('images/contact-bg.jpg') no-repeat center center/cover; }
 
