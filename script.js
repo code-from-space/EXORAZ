@@ -141,3 +141,60 @@ window.addEventListener('load', () => {
     type();
     initializeAdvantageCards(); // Initialize new advantage card effects
 });
+
+
+/* METHODOLOGY CLICK-FLIP SYSTEM */
+
+const methodologySteps = [
+    {
+        num: "01",
+        title: "Understanding Your Vision",
+        desc: "We begin by learning about your business, goals, target audience, and design preferences. Every successful website starts with clarity."
+    },
+    {
+        num: "02",
+        title: "Planning & Design",
+        desc: "Our team creates a structured layout and modern UI design that matches your brand identity. We ensure the design is both attractive and user-friendly."
+    },
+    {
+        num: "03",
+        title: "Development & Implementation",
+        desc: "Once the design is approved, we turn it into a fast, responsive, and functional website using the latest technologies and best coding practices."
+    },
+    {
+        num: "04",
+        title: "Testing & Optimization",
+        desc: "We thoroughly test the website across devices and browsers to ensure smooth performance, strong security, and fast loading speed."
+    },
+    {
+        num: "05",
+        title: "Launch & Deployment",
+        desc: "After final approval, we launch your website with proper domain setup, hosting support, and SEO-ready configurations."
+    }
+];
+
+let currentStep = 0;
+
+function flipMethodology() {
+    const card = document.getElementById('method-card');
+    const heading = document.getElementById('method-heading');
+    const description = document.getElementById('method-description');
+    const stepNum = document.querySelector('.method-step-number');
+
+    // Start rapid 3-flip animation
+    card.classList.add('rapid-flip');
+
+    // Change content halfway through the animation (400ms)
+    setTimeout(() => {
+        currentStep = (currentStep + 1) % methodologySteps.length;
+        
+        stepNum.textContent = methodologySteps[currentStep].num;
+        heading.textContent = methodologySteps[currentStep].title;
+        description.textContent = methodologySteps[currentStep].desc;
+    }, 400);
+
+    // Remove class so it can be clicked again
+    setTimeout(() => {
+        card.classList.remove('rapid-flip');
+    }, 800);
+}
