@@ -1336,3 +1336,59 @@ html, body {
 }
 
 
+/* --- HIGH-SPEED PROJECT SLOT ROLL --- */
+#project-card {
+    width: 500px;
+    height: 320px !important; /* Reduced height to make it look less 'stretched' */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- AGGRESSIVE HIGH-SPEED PROJECT ROLL --- */
+
+.slot-machine-roll {
+    /* 0.6s total duration for a snappier, more aggressive feel */
+    animation: aggressive-roll 0.6s cubic-bezier(0.6, 0, 0.4, 1) !important;
+}
+
+@keyframes aggressive-roll {
+    0% { transform: translateY(0); filter: blur(0); opacity: 1; }
+    
+    /* First rapid pass-through */
+    20% { transform: translateY(150%); filter: blur(15px); opacity: 0.5; }
+    21% { transform: translateY(-150%); }
+    
+    /* Second rapid pass-through (The "Multiple Projects" look) */
+    45% { transform: translateY(150%); filter: blur(20px); opacity: 0.3; }
+    46% { transform: translateY(-150%); }
+    
+    /* Third rapid pass-through */
+    70% { transform: translateY(150%); filter: blur(15px); opacity: 0.5; }
+    71% { transform: translateY(-150%); }
+    
+    /* Final snap into place */
+    100% { transform: translateY(0); filter: blur(0); opacity: 1; }
+}
+
+/* Ensure images fit nicely inside the rolling tile */
+#project-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+#project-label {
+    
+    color: var(--accent-cyan) !important; 
+    
+}

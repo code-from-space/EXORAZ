@@ -198,3 +198,39 @@ function flipMethodology() {
         card.classList.remove('rapid-flip');
     }, 800);
 }
+
+
+
+/* LINEAR PROJECT CYCLE SYSTEM */
+
+const projectList = [
+    { label: "E-commerce", img: "images/ecommerce.jpg" },
+    { label: "Business/Corporate", img: "images/business.jpg" },
+    { label: "Portfolio", img: "images/portfolio.jpg" },
+    { label: "Educational", img: "images/educational.jpg" },
+    { label: "Blog", img: "images/blog.jpg" }
+];
+
+let currentProject = 0;
+
+function rollProject() {
+    const card = document.getElementById('project-card');
+    const img = document.getElementById('project-img');
+    const label = document.getElementById('project-label');
+
+    if (card.classList.contains('slot-machine-roll')) return;
+
+    card.classList.add('slot-machine-roll');
+
+    // Swap content at the 300ms mark (mid-blur)
+    setTimeout(() => {
+        currentProject = (currentProject + 1) % projectList.length;
+        img.src = projectList[currentProject].img;
+        label.textContent = projectList[currentProject].label;
+    }, 300);
+
+    // Clean up class exactly when animation ends (600ms)
+    setTimeout(() => {
+        card.classList.remove('slot-machine-roll');
+    }, 600);
+}
