@@ -97,6 +97,7 @@ function type() {
 // Function to initialize advantage cards with parallax and rotating vectors
 function initializeAdvantageCards() {
     const advantageCards = document.querySelectorAll('.advantage-card');
+    const tiltElements = document.querySelectorAll('.advantage-card, #method-card');
 
     advantageCards.forEach(card => {
         const vectorBg = card.querySelector('.card-vector-bg');
@@ -222,15 +223,57 @@ function rollProject() {
 
     card.classList.add('slot-machine-roll');
 
-    // Swap content at the 300ms mark (mid-blur)
+    // Content Swaps right as the 'Deceleration' phase begins
     setTimeout(() => {
         currentProject = (currentProject + 1) % projectList.length;
         img.src = projectList[currentProject].img;
         label.textContent = projectList[currentProject].label;
-    }, 300);
+        
+        // Update the color to your brand's cyan immediately upon swap
+        label.style.color = "var(--accent-cyan)";
+    }, 450);
 
-    // Clean up class exactly when animation ends (600ms)
+    // Matches the 1.5s CSS duration
     setTimeout(() => {
         card.classList.remove('slot-machine-roll');
-    }, 600);
+    }, 1500); 
+}
+
+
+
+/* PROJECT INFINITE REEL ENGINE */
+
+/* PROJECT INFINITE REEL ENGINE - STUCK-PROOF VERSION */
+
+let currentPos = 0;
+const totalUniqueProjects = 5;
+const frameH = 320; 
+
+function startReel() {
+    const strip = document.getElementById('project-reel-strip');
+    
+    // Prevent multiple clicks during the animation
+    if (strip.style.pointerEvents === 'none') return;
+    strip.style.pointerEvents = 'none';
+
+    // 1. Roll forward
+    currentPos += 3;
+    strip.style.transition = "transform 1.2s cubic-bezier(0.19, 1, 0.22, 1)";
+    strip.style.transform = `translateY(-${currentPos * frameH}px)`;
+
+    // 2. The Invisible Reset Logic
+    setTimeout(() => {
+        // If we've passed the first set of projects, reset instantly
+        if (currentPos >= totalUniqueProjects) {
+            strip.style.transition = "none"; // Disable animation
+            currentPos = currentPos % totalUniqueProjects; // Calculate top position
+            strip.style.transform = `translateY(-${currentPos * frameH}px)`;
+            
+            // This 'force reflow' is the secret to stop it from getting stuck
+            void strip.offsetHeight; 
+        }
+        
+        // Re-enable clicking
+        strip.style.pointerEvents = 'auto';
+    }, 1200); // Matches the 1.2s animation time
 }

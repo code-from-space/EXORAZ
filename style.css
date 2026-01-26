@@ -1353,27 +1353,32 @@ html, body {
 
 /* --- AGGRESSIVE HIGH-SPEED PROJECT ROLL --- */
 
+/* --- AGGRESSIVE ROLL WITH SLOW-DOWN SNAP --- */
+
+/* --- AGGRESSIVE REEL-TO-SMOOTH-STOP --- */
+
 .slot-machine-roll {
-    /* 0.6s total duration for a snappier, more aggressive feel */
-    animation: aggressive-roll 0.6s cubic-bezier(0.6, 0, 0.4, 1) !important;
+    /* Extreme Out curve: Starts at light-speed, ends with a very long glide */
+    animation: reel-to-stop 1.5s cubic-bezier(0.05, 0.7, 0.1, 1) !important;
 }
 
-@keyframes aggressive-roll {
+@keyframes reel-to-stop {
+    /* Phase 1: High-Frequency "Ghost" Frames (0% - 30%) */
     0% { transform: translateY(0); filter: blur(0); opacity: 1; }
     
-    /* First rapid pass-through */
-    20% { transform: translateY(150%); filter: blur(15px); opacity: 0.5; }
-    21% { transform: translateY(-150%); }
+    10% { transform: translateY(400%); filter: blur(40px); opacity: 0; }
+    11% { transform: translateY(-400%); }
     
-    /* Second rapid pass-through (The "Multiple Projects" look) */
-    45% { transform: translateY(150%); filter: blur(20px); opacity: 0.3; }
-    46% { transform: translateY(-150%); }
+    20% { transform: translateY(400%); filter: blur(40px); opacity: 0; }
+    21% { transform: translateY(-400%); }
     
-    /* Third rapid pass-through */
-    70% { transform: translateY(150%); filter: blur(15px); opacity: 0.5; }
-    71% { transform: translateY(-150%); }
+    30% { transform: translateY(400%); filter: blur(40px); opacity: 0; }
+    31% { transform: translateY(-400%); }
+
+    /* Phase 2: Deceleration & Re-entry (30% - 100%) */
+    32% { transform: translateY(-150%); filter: blur(20px); opacity: 0.5; }
     
-    /* Final snap into place */
+    /* The project slowly glides from -150% down to 0% for the rest of the time */
     100% { transform: translateY(0); filter: blur(0); opacity: 1; }
 }
 
@@ -1392,3 +1397,119 @@ html, body {
     color: var(--accent-cyan) !important; 
     
 }
+
+
+
+
+/* --- CRISP INFINITE REEL --- */
+
+.project-reel-window {
+    width: 500px;
+    height: 320px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+}
+
+.reel-strip {
+    display: flex;
+    flex-direction: column;
+    /* No blur here - keep it crisp */
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
+}
+
+.project-frame {
+    width: 500px;
+    height: 320px; /* Must match window height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.project-frame h3 {
+    font-size: 1.6rem;
+    color: var(--accent-cyan);
+    margin-top: 15px;
+}
+
+/* Ensure images are sharp during motion */
+.project-frame img {
+    width: 85%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    backface-visibility: hidden; /* Helps prevent flickering in some browsers */
+}
+
+
+/* --- PROJECTS FINAL POLISH --- */
+
+/* 1. Glowing Effect for the Small Tile */
+.project-reel-window {
+    border: 1px solid rgba(0, 212, 255, 0.3) !important;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15), inset 0 0 15px rgba(0, 212, 255, 0.05);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project-reel-window:hover {
+    box-shadow: 0 0 35px rgba(0, 212, 255, 0.3);
+    border-color: rgba(0, 212, 255, 0.6) !important;
+}
+
+/* 2. View More Button (Top Right) */
+.view-more-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: #00d4ff; /* Brand Cyan */
+    color: #000518; /* Dark background color */
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    z-index: 100;
+}
+
+.view-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+    filter: brightness(1.1);
+}
+
+/* 3. Click to Reveal Hint */
+.click-hint-reveal {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
