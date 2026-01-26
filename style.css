@@ -1238,5 +1238,20 @@ html, body {
 /* 4. Ensure the Morph Tile is large enough for the 3-column grid */
 .advantage-dimensions { 
     width: 1100px !important; 
-    height: 650px !important; 
+    height: 750px !important; 
 }
+
+
+/* Precise Fix to lower the Advantage Title into the tile */
+
+#advantage .section-title {
+    /* Pushes the title down from the top edge of the tile-content container */
+    margin-top: 83px !important; 
+    
+    /* Reduces space between title and cards if they get pushed too far down */
+    margin-bottom: 0.4px !important; 
+    
+    text-align: center !important;
+    width: 100% !important;
+}
+
