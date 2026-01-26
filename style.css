@@ -745,7 +745,7 @@ html, body {
 .img-home { background: url('images/cursor-img.jpg') no-repeat center center/cover; }
 .img-about { background: url('images/about-bg.jpg') no-repeat center center/cover; }
 .img-advantage { background: url('images/advantage-bg.jpg') no-repeat center center/cover; }
-.img-method { background: url('images/method-bg.jpg') no-repeat center center/cover; }
+.img-method { background: url('images/methodology-bg.jpg') no-repeat center center/cover; }
 .img-projects { background: url('images/projects-bg.jpg') no-repeat center center/cover; }
 .img-contact { background: url('images/contact-bg.jpg') no-repeat center center/cover; }
 
@@ -941,4 +941,102 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* --- About Section Floating Boxes --- */
+
+.floating-box {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.5s ease-out;
+    opacity: 0;
+}
+
+.floating-box.animate-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.floating-box-content {
+    text-align: center;
+}
+
+.floating-box-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.floating-box-content p {
+    font-size: 0.9rem;
+    color: var(--text-slate);
+}
+
+.box-top-left {
+    top: -50px;
+    left: -50px;
+}
+
+.box-top-right {
+    top: -50px;
+    right: -50px;
+}
+
+.box-bottom-left {
+    bottom: -50px;
+    left: -50px;
+}
+
+.box-bottom-right {
+    bottom: -50px;
+    right: -50px;
+}
+
+/* --- About Section Border Animation --- */
+
+.border-bike {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-cyan);
+    animation: border-run 10s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.snap-section.active .border-bike {
+    opacity: 1;
+}
+
+@keyframes border-run {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    25% {
+        top: 0;
+        left: calc(100% - 20px);
+    }
+    50% {
+        top: calc(100% - 20px);
+        left: calc(100% - 20px);
+    }
+    75% {
+        top: calc(100% - 20px);
+        left: 0;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
 }

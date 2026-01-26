@@ -26,12 +26,25 @@ function updateMorphTile() {
             morphTile.style.top = `${pRect.top}px`;
             morphTile.style.left = `${pRect.left}px`;
 
+            if (section.id === 'about') {
+                const floatingBoxes = document.querySelectorAll('.floating-box');
+                floatingBoxes.forEach(box => {
+                    box.classList.add('animate-in');
+                });
+            }
+
             // Remove flipping state much faster (200ms)
             setTimeout(() => {
                 morphTile.classList.remove('flipping');
             }, 200); 
         } else {
             section.classList.remove('active');
+            if (section.id === 'about') {
+                const floatingBoxes = document.querySelectorAll('.floating-box');
+                floatingBoxes.forEach(box => {
+                    box.classList.remove('animate-in');
+                });
+            }
         }
     });
 }
@@ -50,6 +63,15 @@ document.addEventListener('mousemove', (e) => {
         const angle = Math.atan2(e.clientY - (rect.top + rect.height/2), e.clientX - (rect.left + rect.width/2));
         pupil.style.transform = `translate(${Math.cos(angle) * 5}px, ${Math.sin(angle) * 5}px)`;
     });
+
+    const floatingBoxes = document.querySelectorAll('.floating-box');
+    const x = (e.clientX - window.innerWidth / 2) / 100;
+    const y = (e.clientY - window.innerHeight / 2) / 100;
+
+    document.querySelector('.box-top-left').style.transform = `translateX(${x * 2}px) translateY(${y * 2}px)`;
+    document.querySelector('.box-top-right').style.transform = `translateX(${x * -2}px) translateY(${y * 2}px)`;
+    document.querySelector('.box-bottom-left').style.transform = `translateX(${x * 2}px) translateY(${y * -2}px)`;
+    document.querySelector('.box-bottom-right').style.transform = `translateX(${x * -2}px) translateY(${y * -2}px)`;
 });
 
 // Typing logic
