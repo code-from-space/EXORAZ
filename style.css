@@ -182,10 +182,9 @@ nav ul li a:hover {
 /* --- Character Interaction Area --- */
 
 .character-area {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
 
 .character {
