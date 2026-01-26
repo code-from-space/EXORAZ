@@ -1207,3 +1207,36 @@ html, body {
         left: 0;
     }
 }
+
+
+/* --- PRECISE LAYOUT FIXES --- */
+
+/* 1. Pull the Title into the center and give it space */
+#advantage .section-title {
+    margin-bottom: 40px !important;
+    text-align: center !important;
+}
+
+/* 2. Center the Grid and add a "Safe Zone" so cards don't touch edges */
+#advantage .grid-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    padding: 30px !important; /* This is the fix for cards touching borders */
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+}
+
+/* 3. Center the Methodology list */
+#methodology .tile-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 4. Ensure the Morph Tile is large enough for the 3-column grid */
+.advantage-dimensions { 
+    width: 1100px !important; 
+    height: 650px !important; 
+}

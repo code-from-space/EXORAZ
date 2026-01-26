@@ -51,12 +51,14 @@ function updateMorphTile() {
 
 // Mouse tracking
 document.addEventListener('mousemove', (e) => {
+    // Spotlight Logic
     const overlay = document.querySelector('.spotlight-overlay');
     if (overlay) {
         overlay.style.setProperty('--x', `${e.clientX}px`);
         overlay.style.setProperty('--y', `${e.clientY}px`);
     }
 
+    // Eye Tracking
     const pupils = document.querySelectorAll('.pupil');
     pupils.forEach(pupil => {
         const rect = pupil.getBoundingClientRect();
@@ -64,14 +66,16 @@ document.addEventListener('mousemove', (e) => {
         pupil.style.transform = `translate(${Math.cos(angle) * 5}px, ${Math.sin(angle) * 5}px)`;
     });
 
-    const floatingBoxes = document.querySelectorAll('.floating-box');
-    const x = (e.clientX - window.innerWidth / 2) / 100;
-    const y = (e.clientY - window.innerHeight / 2) / 100;
-
-    document.querySelector('.box-top-left').style.transform = `translateX(${x * 2}px) translateY(${y * 2}px)`;
-    document.querySelector('.box-top-right').style.transform = `translateX(${x * -2}px) translateY(${y * 2}px)`;
-    document.querySelector('.box-bottom-left').style.transform = `translateX(${x * 2}px) translateY(${y * -2}px)`;
-    document.querySelector('.box-bottom-right').style.transform = `translateX(${x * -2}px) translateY(${y * -2}px)`;
+    // Precise Fix: Only animate boxes if we are in the About section
+    const aboutSection = document.getElementById('about');
+    if (aboutSection && aboutSection.classList.contains('active')) {
+        const x = (e.clientX - window.innerWidth / 2) / 100;
+        const y = (e.clientY - window.innerHeight / 2) / 100;
+        document.querySelector('.box-top-left').style.transform = `translate(${x * 2}px, ${y * 2}px)`;
+        document.querySelector('.box-top-right').style.transform = `translate(${x * -2}px, ${y * 2}px)`;
+        document.querySelector('.box-bottom-left').style.transform = `translate(${x * 2}px, ${y * -2}px)`;
+        document.querySelector('.box-bottom-right').style.transform = `translate(${x * -2}px, ${y * -2}px)`;
+    }
 });
 
 // Typing logic
