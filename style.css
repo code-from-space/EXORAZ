@@ -1627,6 +1627,42 @@ html, body {
 
 
 
+/* --- LAPTOP & ZOOM STABILITY FIX --- */
+
+/* 1. Prevent Navbar Overlap */
+/* Instead of forcing exactly 100vh height, we say 'at least' 100vh.
+   This allows the section to stretch if the content gets bigger (like at 150% zoom). */
+.snap-section {
+    min-height: 100vh !important; 
+    height: auto !important; 
+    padding-top: 100px !important; /* Pushes content down below the nav bar */
+    padding-bottom: 50px !important;
+    box-sizing: border-box; /* Ensures padding doesn't add extra width */
+}
+
+/* 2. Fix Tile Distortion on Zoom (50% - 200%) */
+/* This rule says: "Be your normal pixel size, BUT if the screen is too small 
+   (like when zoomed in), shrink to 90% of the screen width." */
+.tile-placeholder, 
+.hero-glass-card, 
+.project-reel-window, 
+#method-card, 
+.advantage-card,
+.advantage-dimensions,
+.projects-dimensions,
+.methodology-dimensions,
+.hero-dimensions,
+.about-dimensions {
+    /* Keeps your original design size, but becomes fluid if space runs out */
+    max-width: 90vw !important; 
+}
+
+/* 3. Center the Tiles perfectly */
+.tile-placeholder {
+    margin: 0 auto;
+}
+
+
 
 
 

@@ -299,4 +299,24 @@ window.addEventListener('resize', () => {
 
 
 
+// Inside updateMorphTile()...
 
+    // ... existing active detection code ...
+    section.classList.add('active');
+    
+    const placeholder = section.querySelector('.tile-placeholder');
+    
+    // Safety: Only run if placeholder exists
+    if (placeholder) {
+        const pRect = placeholder.getBoundingClientRect();
+
+        morphTile.classList.add('flipping');
+        
+        // This now reads the NEW flexible size from CSS
+        morphTile.style.width = `${pRect.width}px`;
+        morphTile.style.height = `${pRect.height}px`;
+        morphTile.style.top = `${pRect.top}px`;
+        morphTile.style.left = `${pRect.left}px`;
+        
+        // ... rest of your code ...
+    }
