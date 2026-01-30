@@ -277,3 +277,26 @@ function startReel() {
         strip.style.pointerEvents = 'auto';
     }, 1200); // Matches the 1.2s animation time
 }
+
+
+
+
+
+// Optimized Resize Listener
+window.addEventListener('resize', () => {
+    // 1. Recalculate Morph Tile
+    updateMorphTile();
+    
+    // 2. Fix Reel Alignment (Force reset to prevent half-cut images)
+    const strip = document.getElementById('project-reel-strip');
+    if(strip) {
+        // Snap to the nearest valid frame
+        const currentOffset = currentPos * frameH;
+        strip.style.transition = 'none';
+        strip.style.transform = `translateY(-${currentOffset}px)`;
+    }
+});
+
+
+
+
