@@ -1666,5 +1666,66 @@ html, body {
 
 
 
+/* --- SOCIAL HUB & CONTACT STYLES --- */
 
+#contact .tile-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 30px; /* Space between title, icons, and text */
+}
+
+/* 1. The Container for Icons */
+.social-hub {
+    display: flex;
+    gap: 50px; /* Wide spacing for a premium look */
+    margin-bottom: 20px;
+}
+
+/* 2. The Logos (Instagram, LinkedIn, X) */
+.social-icon {
+    font-size: 3.5rem; /* Large, clickable size */
+    color: var(--accent-cyan); /* Matches website theme */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* 3. The Glowing Hover Effect */
+.social-icon:hover {
+    transform: translateY(-8px) scale(1.1); /* Lifts up */
+    color: #fff; /* Center turns white */
+    /* intense cyan glow outer */
+    text-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan);
+}
+
+/* 4. Contact Details (Email & Phone) */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.contact-item {
+    font-size: 1.2rem;
+    color: var(--text-slate);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: color 0.3s ease;
+}
+
+.contact-item i {
+    color: var(--accent-cyan); /* Icons match theme */
+    font-size: 1.1rem;
+}
+
+.contact-item:hover {
+    color: #fff; /* Text brightens on hover */
+}
 
